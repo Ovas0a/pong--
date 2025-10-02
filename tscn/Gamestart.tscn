@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr7eii48m7k2i"]
+
+[ext_resource type="Texture2D" uid="uid://dkkjaf84y3snj" path="res://assets/开始.png" id="1_6dxnb"]
+[ext_resource type="Script" uid="uid://bunmqr0somc66" path="res://src/GameStart/Start.cs" id="2_f2vej"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Start" type="TextureButton" parent="."]
+offset_left = 960.0
+offset_top = 810.0
+offset_right = 1100.0
+offset_bottom = 854.0
+scale = Vector2(5, 5)
+pivot_offset = Vector2(70, 20)
+texture_normal = ExtResource("1_6dxnb")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("2_f2vej")
+
+[connection signal="pressed" from="Start" to="Start" method="press"]

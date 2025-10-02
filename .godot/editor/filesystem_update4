@@ -1,0 +1,9 @@
+res://src/node_2d.tscn
+res://src/GameStart/Start.cs
+res://tscn/Gamestart.tscn
+res://tscn/Pvp.tscn
+res://src/Pvp/PlayerLeft.cs
+res://src/Pvp/PlayerRight.cs
+res://src/Pvp/Ball.cs
+res://tscn/newPlayerleft.cs
+res://src/Pvp/PleyerRight.cs

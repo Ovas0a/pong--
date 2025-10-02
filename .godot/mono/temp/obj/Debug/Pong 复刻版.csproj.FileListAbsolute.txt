@@ -1,0 +1,18 @@
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\bin\Debug\Pong 复刻版.deps.json
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\bin\Debug\Pong 复刻版.runtimeconfig.json
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\bin\Debug\Pong 复刻版.dll
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\bin\Debug\Pong 复刻版.pdb
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\bin\Debug\GodotSharp.dll
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\bin\Debug\GodotSharpEditor.dll
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\obj\Debug\Pong 复刻版.csproj.AssemblyReference.cache
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\obj\Debug\Pong 复刻版.GeneratedMSBuildEditorConfig.editorconfig
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\obj\Debug\Pong 复刻版.AssemblyInfoInputs.cache
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\obj\Debug\Pong 复刻版.AssemblyInfo.cs
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\obj\Debug\Pong 复刻版.csproj.CoreCompileInputs.cache
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\obj\Debug\Pong 复刻版.sourcelink.json
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\obj\Debug\Pong 复刻版.csproj.Up2Date
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\obj\Debug\Pong 复刻版.dll
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\obj\Debug\refint\Pong 复刻版.dll
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\obj\Debug\Pong 复刻版.pdb
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\obj\Debug\Pong 复刻版.genruntimeconfig.cache
+G:\游戏开发\20251001_20260401计划\游戏程序集\pong-复刻版\.godot\mono\temp\obj\Debug\ref\Pong 复刻版.dll

@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://cybv016tcxfw4"]
+
+[ext_resource type="Script" uid="uid://br2uwgbj28fvd" path="res://src/Pvp/Ball.cs" id="1_y5dxv"]
+[ext_resource type="Texture2D" uid="uid://d0tcxed0d1q1m" path="res://assets/pong板.png" id="2_a6bo4"]
+[ext_resource type="Script" uid="uid://8vah3rtkrkhi" path="res://src/Pvp/PlayerLeft.cs" id="2_r4mei"]
+[ext_resource type="Script" uid="uid://cehnjicvh5kus" path="res://src/Pvp/PlayerRight.cs" id="4_6oesq"]
+[ext_resource type="Texture2D" uid="uid://d3xap8p1jmlkh" path="res://assets/Ball.png" id="4_y5dxv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkdkj"]
+size = Vector2(1920, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6bo4"]
+size = Vector2(1920, 25.75)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6oesq"]
+radius = 32.0156
+
+[node name="Pvp" type="Node2D"]
+
+[node name="qian" type="StaticBody2D" parent="."]
+
+[node name="buttom" type="CollisionShape2D" parent="qian"]
+position = Vector2(960, 1090)
+shape = SubResource("RectangleShape2D_fkdkj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="qian"]
+position = Vector2(960, -13.125)
+shape = SubResource("RectangleShape2D_a6bo4")
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+position = Vector2(956, 544)
+script = ExtResource("1_y5dxv")
+
+[node name="Icon" type="Sprite2D" parent="Ball"]
+position = Vector2(0, -4)
+scale = Vector2(2, 2)
+texture = ExtResource("4_y5dxv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_6oesq")
+
+[node name="PlayerLeft" type="StaticBody2D" parent="."]
+position = Vector2(30, 540)
+script = ExtResource("2_r4mei")
+
+[node name="Pong板" type="Sprite2D" parent="PlayerLeft"]
+texture = ExtResource("2_a6bo4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerLeft"]
+polygon = PackedVector2Array(15, -90, -15, -66, -15, 43.1989, -15, 65, 15, 90)
+
+[node name="PlayerRight" type="StaticBody2D" parent="."]
+position = Vector2(1890, 540)
+script = ExtResource("4_6oesq")
+
+[node name="Pong板" type="Sprite2D" parent="PlayerRight"]
+texture = ExtResource("2_a6bo4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRight"]
+polygon = PackedVector2Array(-15, -90, 15, -71, 15, 70, -15, 90)
