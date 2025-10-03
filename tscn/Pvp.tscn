@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cybv016tcxfw4"]
+[gd_scene load_steps=11 format=3 uid="uid://cybv016tcxfw4"]
 
 [ext_resource type="Script" uid="uid://br2uwgbj28fvd" path="res://src/Pvp/Ball.cs" id="1_y5dxv"]
 [ext_resource type="Texture2D" uid="uid://d0tcxed0d1q1m" path="res://assets/pong板.png" id="2_a6bo4"]
-[ext_resource type="Script" uid="uid://8vah3rtkrkhi" path="res://src/Pvp/PlayerLeft.cs" id="2_r4mei"]
-[ext_resource type="Script" uid="uid://cehnjicvh5kus" path="res://src/Pvp/PlayerRight.cs" id="4_6oesq"]
+[ext_resource type="Script" uid="uid://8vah3rtkrkhi" path="res://src/Pvp/bPongMove.cs" id="2_r4mei"]
 [ext_resource type="Texture2D" uid="uid://d3xap8p1jmlkh" path="res://assets/Ball.png" id="4_y5dxv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkdkj"]
@@ -15,21 +14,50 @@ size = Vector2(1920, 25.75)
 [sub_resource type="CircleShape2D" id="CircleShape2D_6oesq"]
 radius = 32.0156
 
+[sub_resource type="LabelSettings" id="LabelSettings_6oesq"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_y5dxv"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_kko66"]
+font_size = 60
+
 [node name="Pvp" type="Node2D"]
 
 [node name="qian" type="StaticBody2D" parent="."]
+position = Vector2(21, 16)
 
 [node name="buttom" type="CollisionShape2D" parent="qian"]
-position = Vector2(960, 1090)
+position = Vector2(939, 1074)
 shape = SubResource("RectangleShape2D_fkdkj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="qian"]
-position = Vector2(960, -13.125)
+position = Vector2(939, -29)
+rotation = -0.000112134
 shape = SubResource("RectangleShape2D_a6bo4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="qian"]
+position = Vector2(-21, -16)
+polygon = PackedVector2Array(960, 1090, 960, 1075, 0, 1080)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="qian"]
+position = Vector2(-21, -16)
+polygon = PackedVector2Array(960, 1090, 960, 1075, 1920, 1080)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="qian"]
+position = Vector2(-21, -1096)
+polygon = PackedVector2Array(960, 1090, 960, 1075, 116.672, 1079.39, 0, 1080)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="qian"]
+position = Vector2(-21, -1096)
+polygon = PackedVector2Array(960, 1090, 960, 1075, 1827.82, 1079.52, 1920, 1080)
 
 [node name="Ball" type="CharacterBody2D" parent="."]
 position = Vector2(956, 544)
 script = ExtResource("1_y5dxv")
+DefaultSpeed = 1000.0
+MaxSpeed = 1500.0
 
 [node name="Icon" type="Sprite2D" parent="Ball"]
 position = Vector2(0, -4)
@@ -41,8 +69,10 @@ position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_6oesq")
 
 [node name="PlayerLeft" type="StaticBody2D" parent="."]
-position = Vector2(30, 540)
+position = Vector2(15, 540)
 script = ExtResource("2_r4mei")
+MoveActionTop = "Top1"
+MoveActionButtom = "Buttom1"
 
 [node name="Pong板" type="Sprite2D" parent="PlayerLeft"]
 texture = ExtResource("2_a6bo4")
@@ -51,11 +81,110 @@ texture = ExtResource("2_a6bo4")
 polygon = PackedVector2Array(15, -90, -15, -66, -15, 43.1989, -15, 65, 15, 90)
 
 [node name="PlayerRight" type="StaticBody2D" parent="."]
-position = Vector2(1890, 540)
-script = ExtResource("4_6oesq")
+position = Vector2(1905, 540)
+script = ExtResource("2_r4mei")
+MoveActionTop = "Top2"
+MoveActionButtom = "Buttom2"
 
 [node name="Pong板" type="Sprite2D" parent="PlayerRight"]
+position = Vector2(0, 3)
 texture = ExtResource("2_a6bo4")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRight"]
+position = Vector2(0, 3)
 polygon = PackedVector2Array(-15, -90, 15, -71, 15, 70, -15, 90)
+
+[node name="BallF" type="Label" parent="."]
+offset_left = 660.0
+offset_top = 30.0
+offset_right = 1260.0
+offset_bottom = 114.0
+pivot_offset = Vector2(298, 39)
+text = "比分"
+label_settings = SubResource("LabelSettings_6oesq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeftF" type="Label" parent="BallF"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 83.0
+text = "0"
+label_settings = SubResource("LabelSettings_y5dxv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BallGroup" type="GridContainer" parent="BallF/LeftF"]
+layout_mode = 0
+offset_left = -39.0
+offset_top = 80.0
+offset_right = 137.0
+offset_bottom = 120.0
+columns = 5
+
+[node name="Five" type="TextureRect" parent="BallF/LeftF/BallGroup"]
+layout_mode = 2
+texture = ExtResource("4_y5dxv")
+
+[node name="Fore" type="TextureRect" parent="BallF/LeftF/BallGroup"]
+layout_mode = 2
+texture = ExtResource("4_y5dxv")
+
+[node name="Tree" type="TextureRect" parent="BallF/LeftF/BallGroup"]
+layout_mode = 2
+texture = ExtResource("4_y5dxv")
+
+[node name="Tow" type="TextureRect" parent="BallF/LeftF/BallGroup"]
+layout_mode = 2
+texture = ExtResource("4_y5dxv")
+
+[node name="One" type="TextureRect" parent="BallF/LeftF/BallGroup"]
+layout_mode = 2
+texture = ExtResource("4_y5dxv")
+
+[node name="RightF" type="Label" parent="BallF"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_bottom = 83.0
+grow_horizontal = 0
+pivot_offset = Vector2(98, 0)
+text = "0"
+label_settings = SubResource("LabelSettings_kko66")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BallGroup" type="GridContainer" parent="BallF/RightF"]
+offset_left = -38.0
+offset_top = 80.0
+offset_right = 138.0
+offset_bottom = 120.0
+columns = 5
+
+[node name="One" type="TextureRect" parent="BallF/RightF/BallGroup"]
+layout_mode = 2
+texture = ExtResource("4_y5dxv")
+
+[node name="Tow" type="TextureRect" parent="BallF/RightF/BallGroup"]
+layout_mode = 2
+texture = ExtResource("4_y5dxv")
+
+[node name="Tree" type="TextureRect" parent="BallF/RightF/BallGroup"]
+layout_mode = 2
+texture = ExtResource("4_y5dxv")
+
+[node name="Fore" type="TextureRect" parent="BallF/RightF/BallGroup"]
+layout_mode = 2
+texture = ExtResource("4_y5dxv")
+
+[node name="Five" type="TextureRect" parent="BallF/RightF/BallGroup"]
+layout_mode = 2
+texture = ExtResource("4_y5dxv")
+
+[node name="ShowBall" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(956, 540)
+scale = Vector2(2, 2)
+texture = ExtResource("4_y5dxv")

@@ -1,8 +1,14 @@
 CollisionPolygon2D
+TextureRect
+GridContainer
+HSplitContainer
+VSplitContainer
+HSeparator
+Sprite2D
+Label
 CollisionShape2D
 StaticBody2D
 CharacterBody2D
 RigidBody2D
-Sprite2D
 TextureButton
 Button
