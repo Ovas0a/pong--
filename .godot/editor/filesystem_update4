@@ -1,7 +1,9 @@
+res://src/GameStart/Start.cs
 res://tscn/Gamestart.tscn
 res://tscn/Pvp.tscn
-res://src/GameStart/Start.cs
 res://src/Pvp/PlayerRight.cs
 res://src/Pvp/Ball.cs
-res://src/Pvp/PlayerLeft.cs
 res://src/Pvp/bPongMove.cs
+res://src/GameStart/StartUIasButton.cs
+res://src/GameStart/ExitUi.cs
+res://src/GameStart/ExitUI.cs

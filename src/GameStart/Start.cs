@@ -16,8 +16,6 @@ public partial class Start : TextureButton
 	private void press()
 	{
 
-		
-		this.GetTree().ChangeSceneToFile("res://tscn/Pvp.tscn");
-		
+		this.GetParent().GetNode<Sprite2D>("StartUI").Visible = true;
 	}
 }

@@ -1,15 +1,80 @@
-[gd_scene load_steps=3 format=3 uid="uid://cr7eii48m7k2i"]
+[gd_scene load_steps=17 format=3 uid="uid://cr7eii48m7k2i"]
 
 [ext_resource type="Texture2D" uid="uid://dkkjaf84y3snj" path="res://assets/开始.png" id="1_6dxnb"]
 [ext_resource type="Script" uid="uid://bunmqr0somc66" path="res://src/GameStart/Start.cs" id="2_f2vej"]
+[ext_resource type="Texture2D" uid="uid://dul6ff08a4w0q" path="res://assets/界面UI.png" id="3_kytwt"]
+[ext_resource type="Texture2D" uid="uid://eyvt31iixsuq" path="res://assets/selectUi.png" id="4_rus7c"]
+[ext_resource type="Script" uid="uid://md1odl7p11nq" path="res://src/GameStart/StartUIasButton.cs" id="5_rus7c"]
+[ext_resource type="Texture2D" uid="uid://ibmxeiqvtjfh" path="res://assets/exitUI.png" id="6_aq55k"]
+[ext_resource type="Script" uid="uid://bxbwsuuqt77f1" path="res://src/GameStart/ExitUI.cs" id="7_rmoej"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cltot"]
+atlas = ExtResource("4_rus7c")
+region = Rect2(0, 64, 384, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aq55k"]
+atlas = ExtResource("4_rus7c")
+region = Rect2(384, 64, 384, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmoej"]
+atlas = ExtResource("4_rus7c")
+region = Rect2(768, 64, 384, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d47th"]
+atlas = ExtResource("4_rus7c")
+region = Rect2(1152, 64, 384, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22856"]
+atlas = ExtResource("4_rus7c")
+region = Rect2(1536, 64, 384, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wo5s7"]
+atlas = ExtResource("4_rus7c")
+region = Rect2(1920, 64, 384, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw5ff"]
+atlas = ExtResource("4_rus7c")
+region = Rect2(2304, 64, 384, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fwbuq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cltot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aq55k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmoej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d47th")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22856")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wo5s7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qw5ff")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0an0w"]
+font_size = 30
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Start" type="TextureButton" parent="."]
-offset_left = 960.0
-offset_top = 810.0
-offset_right = 1100.0
-offset_bottom = 854.0
+offset_left = 889.0
+offset_top = 837.0
+offset_right = 1029.0
+offset_bottom = 881.0
 scale = Vector2(5, 5)
 pivot_offset = Vector2(70, 20)
 texture_normal = ExtResource("1_6dxnb")
@@ -17,4 +82,45 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("2_f2vej")
 
+[node name="StartUI" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 540)
+texture = ExtResource("3_kytwt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StartUI"]
+position = Vector2(0, -120)
+sprite_frames = SubResource("SpriteFrames_fwbuq")
+speed_scale = 4.0
+
+[node name="PVP" type="Label" parent="StartUI/AnimatedSprite2D"]
+offset_left = -108.0
+offset_top = -24.0
+offset_right = 99.0
+offset_bottom = 18.0
+text = "pvp"
+label_settings = SubResource("LabelSettings_0an0w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="StartUI/AnimatedSprite2D"]
+offset_left = -192.0
+offset_top = -14.0
+offset_right = 192.0
+offset_bottom = 19.0
+focus_mode = 0
+flat = true
+script = ExtResource("5_rus7c")
+
+[node name="TextureButton" type="TextureButton" parent="StartUI"]
+offset_left = 153.0
+offset_top = -192.0
+offset_right = 193.0
+offset_bottom = -152.0
+texture_normal = ExtResource("6_aq55k")
+script = ExtResource("7_rmoej")
+
 [connection signal="pressed" from="Start" to="Start" method="press"]
+[connection signal="mouse_entered" from="StartUI/AnimatedSprite2D/Button" to="StartUI/AnimatedSprite2D/Button" method="mouseEnt"]
+[connection signal="mouse_exited" from="StartUI/AnimatedSprite2D/Button" to="StartUI/AnimatedSprite2D/Button" method="mouseOut"]
+[connection signal="pressed" from="StartUI/AnimatedSprite2D/Button" to="StartUI/AnimatedSprite2D/Button" method="press"]
+[connection signal="pressed" from="StartUI/TextureButton" to="StartUI/TextureButton" method="press"]

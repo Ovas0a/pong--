@@ -20,8 +20,12 @@ public partial class Ball : CharacterBody2D
 		base._Ready();
 		Speed = DefaultSpeed;
 		//获取出界后的显示球
-		ShowBall=GetTree().CurrentScene.GetNode<Sprite2D>("ShowBall");
-		_velocity = new Vector2(GD.Randf() < 0.5 ? -1 : 1, GD.Randf() * 2 - 1).Normalized() * Speed;
+		ShowBall = GetTree().CurrentScene.GetNode<Sprite2D>("ShowBall");
+		_velocity = new Vector2(0, 0);
+		this.GetTree().CreateTimer(2.0).Timeout += () =>
+        {
+            _velocity = new Vector2(GD.Randf() < 0.5 ? -1 : 1, GD.Randf() * 2 - 1).Normalized() * Speed;
+        };
 
 		F = new Group_F(GetTree().CurrentScene.GetNode<Label>("BallF"));
     }

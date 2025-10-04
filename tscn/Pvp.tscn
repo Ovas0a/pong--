@@ -157,6 +157,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BallGroup" type="GridContainer" parent="BallF/RightF"]
+layout_mode = 0
 offset_left = -38.0
 offset_top = 80.0
 offset_right = 138.0
