@@ -9,7 +9,6 @@ public partial class bPongMove : StaticBody2D
 	public float MaxSpeed = 2000f;
 	public float Acceleration = 0;
 	public float MoveY = 0;
-
 	[Export]
 	public string MoveActionTop;
 	[Export]
@@ -35,11 +34,23 @@ public partial class bPongMove : StaticBody2D
 
 	public override void _Process(double delta)
 	{
-		var isMove = Input.GetAxis(MoveActionTop, MoveActionButtom);
+		float isMove = 0;
+		if (this.Name == "PlayerRight" && PvpSystem.mode == Mode.PVE)
+		{
+			//ai逻辑赋值
+
+			isMove = AI.Link(this,(float)GetProcessDeltaTime());
+		}
+		else//如果模式是pvp，右边pong板，就由玩家输入逻辑
+		{
+			
+			isMove = Input.GetAxis(MoveActionTop, MoveActionButtom);
+		}
+
 
 		if (isMove != 0)
 		{
-			Acceleration += (float)delta*2;
+			Acceleration += (float)delta * 2;
 			MoveY = isMove * MinSpeed * (float)delta * Acceleration;
 
 
@@ -69,7 +80,7 @@ public partial class bPongMove : StaticBody2D
 
 		}
 
-		var Vec = new Vector2(Position.X,Position.Y+MoveY);
+		var Vec = new Vector2(Position.X, Position.Y + MoveY);
 
 		//移动超边界判定
 		if (Vec.Y < MoveMinPosY) Vec.Y = MoveMinPosY;
@@ -77,6 +88,10 @@ public partial class bPongMove : StaticBody2D
 
 		Position = Vec;
 	}
+
+
+	
+
 	
 
 }

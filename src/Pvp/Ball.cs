@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Runtime.CompilerServices;
 
 public partial class Ball : CharacterBody2D
 {
@@ -12,12 +13,21 @@ public partial class Ball : CharacterBody2D
 	private Sprite2D ShowBall;
 
 	private Group_F F;
+	private static CharacterBody2D thisNode;
+	public static CharacterBody2D ThisNode
+    {
+		get
+        {
+			return thisNode;
+        }
+    }
 
-
+	
 	
 	public override void _Ready()
 	{
 		base._Ready();
+		thisNode = this;
 		Speed = DefaultSpeed;
 		//获取出界后的显示球
 		ShowBall = GetTree().CurrentScene.GetNode<Sprite2D>("ShowBall");
@@ -39,9 +49,14 @@ public partial class Ball : CharacterBody2D
 			ShowBall.Visible = true;
 			GetTree().CreateTimer(3.0).Timeout += () =>
 			{
+				_velocity = new Vector2(GD.Randf() < 0.5 ? -1 : 1, GD.Randf() * 2 - 1).Normalized() * Speed;
+				var timers = this.GetParent().GetNode<Label>("timers");
 				ShowBall.Visible = false;
 				this.Position = new Vector2(1920 / 2, 1080 / 2);
 			};
+
+			//发球提示
+			Timers.Show = true;
 
 
 			if (Position.X > 0) F.removeHigF("RightF");     //右边被进球
@@ -52,12 +67,41 @@ public partial class Ball : CharacterBody2D
 			if (isBallVet != "null")
             {
 				F.addBigF(isBallVet);
-				F.ResetHigF();
-            }
+				//判断是否有人获胜
+				if (F.isGameOver() != "null")
+				{
+					GD.Print("有人获胜");
+					//关闭发球提示
+					Timers.Show = false;
+					//有人获胜弹出菜单，继续游戏或者退出主页面
+					var SystemNode = PvpSystem.getThisNode();
+					SystemNode.GetNode<AnimatedSprite2D>("Reload").Visible = true;
+					SystemNode.GetNode<TextureButton>("TextureButton").Visible = false;
+					SystemNode.Visible = true;
+					//胜利
+					//目前无需重新赋值，因为仅有的返回界面和重新游戏 都会重新加载整个场景树
+					Label l = this.GetTree().CurrentScene.GetNode<Label>("over");
+					l.Visible = true;
+					if (F.isGameOver() == "LeftF")
+					{
+						l.GetNode<Label>("left").Visible = true;
+					}
+					else
+					{
+						l.GetNode<Label>("right").Visible = true;
+					}
+				}
+				else
+				{
+					//重置小球
+					F.ResetHigF();
+				}
+			   
+					
+				
+    	 }
+
 			
-
-
-
 
 
 		}
@@ -101,6 +145,14 @@ public partial class Ball : CharacterBody2D
 			_velocity.Y + hitOffset * 200
 		);
 
+	}
+
+
+    public override void _EnterTree()
+    {
+		base._EnterTree();
+		Timers.Show = false;
+		Timers.Timer = 3;
     }
 
 }

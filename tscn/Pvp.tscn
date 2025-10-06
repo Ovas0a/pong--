@@ -1,9 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://cybv016tcxfw4"]
+[gd_scene load_steps=30 format=3 uid="uid://cybv016tcxfw4"]
 
 [ext_resource type="Script" uid="uid://br2uwgbj28fvd" path="res://src/Pvp/Ball.cs" id="1_y5dxv"]
 [ext_resource type="Texture2D" uid="uid://d0tcxed0d1q1m" path="res://assets/pong板.png" id="2_a6bo4"]
 [ext_resource type="Script" uid="uid://8vah3rtkrkhi" path="res://src/Pvp/bPongMove.cs" id="2_r4mei"]
 [ext_resource type="Texture2D" uid="uid://d3xap8p1jmlkh" path="res://assets/Ball.png" id="4_y5dxv"]
+[ext_resource type="Texture2D" uid="uid://dul6ff08a4w0q" path="res://assets/界面UI.png" id="5_grqmj"]
+[ext_resource type="Script" uid="uid://w8httb6bhbki" path="res://src/Pvp/PvpSystem.cs" id="6_hdort"]
+[ext_resource type="Texture2D" uid="uid://eyvt31iixsuq" path="res://assets/selectUi.png" id="6_kkh2x"]
+[ext_resource type="Script" uid="uid://md1odl7p11nq" path="res://src/GameStart/StartUIasButton.cs" id="7_hdort"]
+[ext_resource type="Texture2D" uid="uid://ibmxeiqvtjfh" path="res://assets/exitUI.png" id="8_vvx5j"]
+[ext_resource type="Script" uid="uid://bxbwsuuqt77f1" path="res://src/GameStart/ExitUI.cs" id="9_ntnrf"]
+[ext_resource type="Script" uid="uid://e8n7nqbqpusj" path="res://src/Pvp/Timers.cs" id="11_hdort"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkdkj"]
 size = Vector2(1920, 20)
@@ -21,6 +28,75 @@ font_size = 60
 font_size = 60
 
 [sub_resource type="LabelSettings" id="LabelSettings_kko66"]
+font_size = 60
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cltot"]
+atlas = ExtResource("6_kkh2x")
+region = Rect2(0, 64, 384, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aq55k"]
+atlas = ExtResource("6_kkh2x")
+region = Rect2(384, 64, 384, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmoej"]
+atlas = ExtResource("6_kkh2x")
+region = Rect2(768, 64, 384, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d47th"]
+atlas = ExtResource("6_kkh2x")
+region = Rect2(1152, 64, 384, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22856"]
+atlas = ExtResource("6_kkh2x")
+region = Rect2(1536, 64, 384, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wo5s7"]
+atlas = ExtResource("6_kkh2x")
+region = Rect2(1920, 64, 384, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw5ff"]
+atlas = ExtResource("6_kkh2x")
+region = Rect2(2304, 64, 384, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oujls"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cltot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aq55k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmoej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d47th")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22856")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wo5s7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qw5ff")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_aqmih"]
+font_size = 15
+
+[sub_resource type="LabelSettings" id="LabelSettings_kkh2x"]
+font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdort"]
+font_size = 45
+
+[sub_resource type="LabelSettings" id="LabelSettings_vvx5j"]
 font_size = 60
 
 [node name="Pvp" type="Node2D"]
@@ -56,8 +132,8 @@ polygon = PackedVector2Array(960, 1090, 960, 1075, 1827.82, 1079.52, 1920, 1080)
 [node name="Ball" type="CharacterBody2D" parent="."]
 position = Vector2(956, 544)
 script = ExtResource("1_y5dxv")
-DefaultSpeed = 1000.0
-MaxSpeed = 1500.0
+DefaultSpeed = 1500.0
+MaxSpeed = 1800.0
 
 [node name="Icon" type="Sprite2D" parent="Ball"]
 position = Vector2(0, -4)
@@ -189,3 +265,144 @@ visible = false
 position = Vector2(956, 540)
 scale = Vector2(2, 2)
 texture = ExtResource("4_y5dxv")
+
+[node name="Sytem" type="Sprite2D" parent="."]
+process_mode = 3
+visible = false
+position = Vector2(960, 540)
+texture = ExtResource("5_grqmj")
+script = ExtResource("6_hdort")
+
+[node name="Retun" type="AnimatedSprite2D" parent="Sytem"]
+position = Vector2(0, -109)
+sprite_frames = SubResource("SpriteFrames_oujls")
+speed_scale = 4.0
+
+[node name="Text" type="Label" parent="Sytem/Retun"]
+offset_left = -108.0
+offset_top = -14.0
+offset_right = 99.0
+offset_bottom = 18.0
+text = "退回主界面"
+label_settings = SubResource("LabelSettings_aqmih")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Sytem/Retun"]
+offset_left = -192.0
+offset_top = -14.0
+offset_right = 192.0
+offset_bottom = 19.0
+focus_mode = 0
+flat = true
+script = ExtResource("7_hdort")
+
+[node name="Exit" type="AnimatedSprite2D" parent="Sytem"]
+position = Vector2(0, -47)
+sprite_frames = SubResource("SpriteFrames_oujls")
+speed_scale = 4.0
+
+[node name="Text" type="Label" parent="Sytem/Exit"]
+offset_left = -108.0
+offset_top = -14.0
+offset_right = 99.0
+offset_bottom = 18.0
+text = "退出游戏"
+label_settings = SubResource("LabelSettings_aqmih")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Sytem/Exit"]
+offset_left = -192.0
+offset_top = -14.0
+offset_right = 192.0
+offset_bottom = 19.0
+focus_mode = 0
+flat = true
+script = ExtResource("7_hdort")
+
+[node name="Reload" type="AnimatedSprite2D" parent="Sytem"]
+visible = false
+position = Vector2(0, -47)
+sprite_frames = SubResource("SpriteFrames_oujls")
+speed_scale = 4.0
+
+[node name="Text" type="Label" parent="Sytem/Reload"]
+offset_left = -108.0
+offset_top = -14.0
+offset_right = 99.0
+offset_bottom = 18.0
+text = "再来一局"
+label_settings = SubResource("LabelSettings_aqmih")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Sytem/Reload"]
+offset_left = -192.0
+offset_top = -14.0
+offset_right = 192.0
+offset_bottom = 19.0
+focus_mode = 0
+flat = true
+script = ExtResource("7_hdort")
+
+[node name="TextureButton" type="TextureButton" parent="Sytem"]
+offset_left = 153.0
+offset_top = -192.0
+offset_right = 193.0
+offset_bottom = -152.0
+texture_normal = ExtResource("8_vvx5j")
+script = ExtResource("9_ntnrf")
+
+[node name="over" type="Label" parent="."]
+visible = false
+offset_left = 870.0
+offset_top = 248.0
+offset_right = 1050.0
+offset_bottom = 311.0
+text = "游戏结束"
+label_settings = SubResource("LabelSettings_kkh2x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="left" type="Label" parent="over"]
+visible = false
+layout_mode = 0
+offset_left = -109.0
+offset_top = -51.0
+offset_right = -19.0
+offset_bottom = 12.0
+text = "胜利"
+label_settings = SubResource("LabelSettings_hdort")
+
+[node name="right" type="Label" parent="over"]
+visible = false
+offset_left = 203.0
+offset_top = -52.0
+offset_right = 293.0
+offset_bottom = 11.0
+text = "胜利"
+label_settings = SubResource("LabelSettings_hdort")
+
+[node name="timers" type="Label" parent="."]
+visible = false
+offset_left = 940.0
+offset_top = 275.0
+offset_right = 980.0
+offset_bottom = 358.0
+text = "3"
+label_settings = SubResource("LabelSettings_vvx5j")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("11_hdort")
+
+[connection signal="mouse_entered" from="Sytem/Retun/Button" to="Sytem/Retun/Button" method="mouseEnt"]
+[connection signal="mouse_exited" from="Sytem/Retun/Button" to="Sytem/Retun/Button" method="mouseOut"]
+[connection signal="pressed" from="Sytem/Retun/Button" to="Sytem/Retun/Button" method="ReturnPress"]
+[connection signal="mouse_entered" from="Sytem/Exit/Button" to="Sytem/Exit/Button" method="mouseEnt"]
+[connection signal="mouse_exited" from="Sytem/Exit/Button" to="Sytem/Exit/Button" method="mouseOut"]
+[connection signal="pressed" from="Sytem/Exit/Button" to="Sytem/Exit/Button" method="ExitPress"]
+[connection signal="mouse_entered" from="Sytem/Reload/Button" to="Sytem/Reload/Button" method="mouseEnt"]
+[connection signal="mouse_exited" from="Sytem/Reload/Button" to="Sytem/Reload/Button" method="mouseOut"]
+[connection signal="pressed" from="Sytem/Reload/Button" to="Sytem/Reload/Button" method="Reload"]
+[connection signal="pressed" from="Sytem/TextureButton" to="Sytem/TextureButton" method="press"]

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Pong 复刻版")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b0296f0710fcffba51e4a5eac96108491018505e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+15a35c8562c8487a8af66c17d9dd89c32d641637")]
 [assembly: System.Reflection.AssemblyProductAttribute("Pong 复刻版")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Pong 复刻版")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -74,7 +74,7 @@ public class Group_F
     // 判断小球有没有人胜利 返回胜利的大比分名称
     public string isBallVet()
     {
-        string name="";
+        string name = "";
 
         bool over = false;
 
@@ -107,6 +107,14 @@ public class Group_F
 
 
 
+    }
+    public string isGameOver()
+    {
+        
+        int leftF = int.Parse(bigF.GetNode<Label>("LeftF").Text);
+        int rightF = int.Parse(bigF.GetNode<Label>("RightF").Text);
+
+        return leftF == 1 || rightF == 1 ?(leftF>rightF?"LeftF":"RightF"): "null"; 
     }
     
 

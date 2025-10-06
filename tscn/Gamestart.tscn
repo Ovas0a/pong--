@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cr7eii48m7k2i"]
+[gd_scene load_steps=18 format=3 uid="uid://cr7eii48m7k2i"]
 
 [ext_resource type="Texture2D" uid="uid://dkkjaf84y3snj" path="res://assets/开始.png" id="1_6dxnb"]
 [ext_resource type="Script" uid="uid://bunmqr0somc66" path="res://src/GameStart/Start.cs" id="2_f2vej"]
@@ -68,6 +68,9 @@ animations = [{
 [sub_resource type="LabelSettings" id="LabelSettings_0an0w"]
 font_size = 30
 
+[sub_resource type="LabelSettings" id="LabelSettings_aq55k"]
+font_size = 30
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Start" type="TextureButton" parent="."]
@@ -87,12 +90,14 @@ visible = false
 position = Vector2(960, 540)
 texture = ExtResource("3_kytwt")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StartUI"]
-position = Vector2(0, -120)
+[node name="Pvp" type="AnimatedSprite2D" parent="StartUI"]
+position = Vector2(0, -119)
 sprite_frames = SubResource("SpriteFrames_fwbuq")
+frame = 3
+frame_progress = 0.722222
 speed_scale = 4.0
 
-[node name="PVP" type="Label" parent="StartUI/AnimatedSprite2D"]
+[node name="PVP" type="Label" parent="StartUI/Pvp"]
 offset_left = -108.0
 offset_top = -24.0
 offset_right = 99.0
@@ -102,7 +107,34 @@ label_settings = SubResource("LabelSettings_0an0w")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="StartUI/AnimatedSprite2D"]
+[node name="Button" type="Button" parent="StartUI/Pvp"]
+offset_left = -192.0
+offset_top = -14.0
+offset_right = 192.0
+offset_bottom = 19.0
+focus_mode = 0
+flat = true
+script = ExtResource("5_rus7c")
+
+[node name="PvE" type="AnimatedSprite2D" parent="StartUI"]
+position = Vector2(0, -42)
+sprite_frames = SubResource("SpriteFrames_fwbuq")
+frame = 3
+frame_progress = 0.722222
+speed_scale = 4.0
+
+[node name="PVE" type="Label" parent="StartUI/PvE"]
+offset_left = -108.0
+offset_top = -24.0
+offset_right = 99.0
+offset_bottom = 18.0
+text = "pve
+"
+label_settings = SubResource("LabelSettings_0an0w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="StartUI/PvE"]
 offset_left = -192.0
 offset_top = -14.0
 offset_right = 192.0
@@ -119,8 +151,32 @@ offset_bottom = -152.0
 texture_normal = ExtResource("6_aq55k")
 script = ExtResource("7_rmoej")
 
+[node name="Eixt" type="TextureButton" parent="."]
+offset_left = 1824.0
+offset_top = 13.0
+offset_right = 1908.0
+offset_bottom = 93.0
+texture_normal = ExtResource("6_aq55k")
+stretch_mode = 0
+
+[node name="简介" type="Label" parent="."]
+offset_left = 1597.0
+offset_top = 807.0
+offset_right = 1870.0
+offset_bottom = 1029.0
+text = "游戏中 esc 弹出菜单
+玩家1 w 上移
+           s  下移
+玩家2  ↑ 上移
+            ↓ 下移"
+label_settings = SubResource("LabelSettings_aq55k")
+
 [connection signal="pressed" from="Start" to="Start" method="press"]
-[connection signal="mouse_entered" from="StartUI/AnimatedSprite2D/Button" to="StartUI/AnimatedSprite2D/Button" method="mouseEnt"]
-[connection signal="mouse_exited" from="StartUI/AnimatedSprite2D/Button" to="StartUI/AnimatedSprite2D/Button" method="mouseOut"]
-[connection signal="pressed" from="StartUI/AnimatedSprite2D/Button" to="StartUI/AnimatedSprite2D/Button" method="press"]
+[connection signal="mouse_entered" from="StartUI/Pvp/Button" to="StartUI/Pvp/Button" method="mouseEnt"]
+[connection signal="mouse_exited" from="StartUI/Pvp/Button" to="StartUI/Pvp/Button" method="mouseOut"]
+[connection signal="pressed" from="StartUI/Pvp/Button" to="StartUI/Pvp/Button" method="press"]
+[connection signal="mouse_entered" from="StartUI/PvE/Button" to="StartUI/PvE/Button" method="mouseEnt"]
+[connection signal="mouse_exited" from="StartUI/PvE/Button" to="StartUI/PvE/Button" method="mouseOut"]
+[connection signal="pressed" from="StartUI/PvE/Button" to="StartUI/PvE/Button" method="PVEpress"]
 [connection signal="pressed" from="StartUI/TextureButton" to="StartUI/TextureButton" method="press"]
+[connection signal="pressed" from="Eixt" to="StartUI/Pvp/Button" method="ExitPress"]

@@ -1,6 +1,6 @@
+Label
 TextureButton
 Button
-Label
 AnimatedSprite2D
 AnimationPlayer
 CollisionPolygon2D
@@ -12,4 +12,3 @@ HSeparator
 Sprite2D
 CollisionShape2D
 StaticBody2D
-CharacterBody2D
